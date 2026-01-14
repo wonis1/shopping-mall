@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import type { Product } from "../../types";
-import styles from "src/components/ProductCard/ProductCard.module.css";
+import styles from "./ProductCard.module.css";
 
 interface ProductCardProps {
   product: Product;
 }
 
-function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product }: ProductCardProps) {
   // 가격 포맷팅
   const formattedPrice = product.price.toLocaleString("ko-KR");
 
@@ -24,7 +24,7 @@ function ProductCard({ product }: ProductCardProps) {
         );
       } else {
         stars.push(
-          <span key={i} className={stars.starEmpty}>
+          <span key={i} className={styles.starEmpty}>
             ☆
           </span>
         );
