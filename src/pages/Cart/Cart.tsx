@@ -28,92 +28,96 @@ function Cart() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>장바구니</h1>
-
-      {/* 장바구니 아이템 */}
-      <div className={styles.items}>
-        {items.map((item) => (
-          <div key={item.id} className={styles.item}>
-            {/* 이미지 */}
-            <Link
-              to={`/products/${item.product.id}`}
-              className={styles.imageLink}
-            >
-              <img
-                src={item.product.image}
-                alt={item.product.name}
-                className={styles.image}
-              />
-            </Link>
-
-            {/* 정보 */}
-            <div className={styles.info}>
-              <Link to={`/products/${item.product.id}`} className={styles.name}>
-                {item.product.name}
+      <div>
+        {/* 장바구니 아이템 */}
+        <div className={styles.items}>
+          {items.map((item) => (
+            <div key={item.id} className={styles.item}>
+              {/* 이미지 */}
+              <Link
+                to={`/products/${item.product.id}`}
+                className={styles.imageLink}
+              >
+                <img
+                  src={item.product.image}
+                  alt={item.product.name}
+                  className={styles.image}
+                />
               </Link>
 
-              {/* 선택한 옵션 */}
-              {item.selectedOptions && (
-                <p className={styles.options}>
-                  {Object.entries(item.selectedOptions)
-                    .map(([key, value]) => (
-                      <span key={key}>
-                        {key}: {value}
-                      </span>
-                    ))
-                    .reduce((prev, curr) => (
-                      <>
-                        {prev} / {curr}
-                      </>
-                    ))}
+              {/* 정보 */}
+              <div className={styles.info}>
+                <Link
+                  to={`/products/${item.product.id}`}
+                  className={styles.name}
+                >
+                  {item.product.name}
+                </Link>
+
+                {/* 선택한 옵션 */}
+                {item.selectedOptions && (
+                  <p className={styles.options}>
+                    {Object.entries(item.selectedOptions)
+                      .map(([key, value]) => (
+                        <span key={key}>
+                          {key}: {value}
+                        </span>
+                      ))
+                      .reduce((prev, curr) => (
+                        <>
+                          {prev} / {curr}
+                        </>
+                      ))}
+                  </p>
+                )}
+
+                <p className={styles.price}>
+                  {item.product.price.toLocaleString()}원
                 </p>
-              )}
+              </div>
 
-              <p className={styles.price}>
-                {item.product.price.toLocaleString()}원
-              </p>
+              {/* 수량조절 */}
+              <div className={styles.quantityControl}>
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                  className={styles.quantityBtn}
+                >
+                  -
+                </button>
+
+                <span className={styles.quantity}>{item.quantity}</span>
+
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                  className={styles.quantityBtn}
+                  disabled={item.quantity >= item.product.stock}
+                >
+                  +
+                </button>
+              </div>
+
+              {/* 합계 */}
+              <div className={styles.itemTotal}>
+                <p className={styles.itemTotalPrice}>
+                  {(item.product.price * item.quantity).toLocaleString()}원
+                </p>
+
+                <button
+                  onClick={() => removeFromCart(item.id)}
+                  className={styles.deleteBtn}
+                >
+                  삭제
+                </button>
+              </div>
             </div>
+          ))}
+        </div>
 
-            {/* 수량조절 */}
-            <div className={styles.quantityControl}>
-              <button
-                onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                className={styles.quantityBtn}
-              >
-                -
-              </button>
-
-              <span className={styles.quantity}>{item.quantity}</span>
-
-              <button
-                onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                className={styles.quantityBtn}
-                disabled={item.quantity >= item.product.stock}
-              >
-                +
-              </button>
-            </div>
-
-            {/* 합계 */}
-            <div className={styles.itemTotal}>
-              <p className={styles.itemTotalPrice}>
-                {(item.product.price * item.quantity).toLocaleString()}원
-              </p>
-
-              <button
-                onClick={() => removeFromCart(item.id)}
-                className={styles.deleteBtn}
-              >
-                삭제
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className={styles.clearSection}>
-        <button onClick={clearCart} className={styles.clearBtn}>
-          전체 삭제
-        </button>
+        <div className={styles.clearSection}>
+          <button onClick={clearCart} className={styles.clearBtn}>
+            전체 삭제
+          </button>
+        </div>
       </div>
 
       <div className={styles.summary}>
