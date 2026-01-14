@@ -63,11 +63,14 @@ function Cart() {
                           {key}: {value}
                         </span>
                       ))
-                      .reduce((prev, curr) => (
-                        <>
-                          {prev} / {curr}
-                        </>
-                      ))}
+                      .reduce(
+                        (prev, curr) => (
+                          <>
+                            {prev} / {curr}
+                          </>
+                        ),
+                        <></>
+                      )}
                   </p>
                 )}
 
