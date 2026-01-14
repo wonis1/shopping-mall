@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useProducts } from "../../hooks/useProducts";
 import { useCart } from "../../hooks/useCart";
 import { useState } from "react";
-import styles from "src/pages/ProductDetail/ProductDetail.module.css";
+import styles from "./ProductDetail.module.css";
 import Button from "../../components/common/Button";
 
 function ProductDetail() {
