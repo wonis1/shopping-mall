@@ -1,4 +1,4 @@
-container {
+.container {
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -37,7 +37,7 @@ container {
     color: #2c3e50;
 }
 
-rating {
+.rating {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -73,7 +73,7 @@ rating {
     margin-bottom: 30px;
 }
 
-optionGroup {
+.optionGroup {
     margin-bottom: 20px;
 }
 

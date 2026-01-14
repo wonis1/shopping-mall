@@ -66,6 +66,8 @@ function ProductDetail() {
 
     for (let i = 0; i < 5; i++) {
       if (i < fullStars) {
+        stars.push(<span key={i}>⭐</span>);
+      } else {
         stars.push(
           <span key={i} style={{ opacity: 0.3 }}>
             ☆
@@ -89,7 +91,7 @@ function ProductDetail() {
         </div>
         {/* 정보 */}
         <div className={styles.infoSection}>
-          <p className={styles.category}>{product.categoty}</p>
+          <p className={styles.category}>{product.category}</p>
           <h1 className={styles.name}>{product.name}</h1>
 
           <div className={styles.rating}>
